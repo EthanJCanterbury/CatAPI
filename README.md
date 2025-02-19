@@ -18,9 +18,31 @@ The API will be accessible at:
 - Landing page: `https://your-repl-url/`
 - Random cat endpoint: `https://your-repl-url/api/cat`
 
-## Usage
+## API Endpoints
 
-Make a GET request to the `/api/cat` endpoint to receive a random cat image.
+1. GET `/api/cat` - Get a random cat image
+2. GET `/api/cats/count` - Get total number of cats
+3. GET `/api/cats/list` - Get list of all cat filenames
+4. GET `/api/cats/random/{count}` - Get multiple random cats (1-5)
+5. POST `/api/cats/vote` - Vote for a cat (requires JSON body with cat_id)
+
+### Examples
+
+Get a random cat:
+```python
+import requests
+response = requests.get('https://your-repl-url/api/cat')
+with open('cat.jpg', 'wb') as f:
+    f.write(response.content)
+```
+
+Vote for a cat:
+```python
+import requests
+response = requests.post('https://your-repl-url/api/cats/vote', 
+                        json={'cat_id': 'cat1.jpg'})
+print(response.json())
+```
 
 Python example:
 ```python
